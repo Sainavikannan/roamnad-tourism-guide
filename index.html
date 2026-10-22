@@ -1,0 +1,328 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Ramanathapuram with a smart multilingual tourism guide.">
+    <title>Ramanathapuram | AI Tourist Guide</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <a href="#" class="logo">🌴 Romnad</span></a>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#explore">Explore</a>
+        <a href="#planner">Trip Planner</a>
+        <a href="#local">Local Guide</a>
+    </nav>
+
+    <div class="nav-actions">
+        <select id="language" aria-label="Choose language">
+            <option value="en">English</option>
+            <option value="ta">தமிழ்</option>
+            <option value="hi">हिन्दी</option>
+        </select>
+        <button class="theme-btn" onclick="toggleTheme()" aria-label="Toggle dark mode">🌙</button>
+    </div>
+</header>
+
+<main>
+<section class="hero" id="home">
+    <div class="hero-content">
+        <span class="eyebrow">YOUR SMART TRAVEL COMPANION</span>
+        <h1 id="heroTitle">Welcome To <br><span>Ramanathapuram</span></h1>
+        <p id="heroDescription">
+            Explore ancient temples, beautiful coastlines and unforgettable
+            cultural experiences with your personal travel guide.
+        </p>
+
+        <div class="hero-search">
+            <input id="search" type="search"
+                   placeholder="Search temples, beaches, bridges..."
+                   aria-label="Search tourist places">
+            <button onclick="searchPlaces()">🔍 Explore</button>
+        </div>
+
+        <div class="hero-links">
+            <a href="#explore">Explore destinations ↓</a>
+            <span>📍 Tamil Nadu, India</span>
+        </div>
+    </div>
+</section>
+
+<section class="stats">
+    <div><strong>Heritage</strong><span>Ancient culture</span></div>
+    <div><strong>Coastlines</strong><span>Scenic sea views</span></div>
+    <div><strong>Local Life</strong><span>Authentic experiences</span></div>
+    <div><strong>Smart Plans</strong><span>Trips made easier</span></div>
+</section>
+
+<section class="section" id="explore">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">FIND YOUR NEXT ADVENTURE</span>
+            <h2>Explore Destinations</h2>
+            <p>Discover places worth remembering.</p>
+        </div>
+        <button class="outline-btn" onclick="showAllPlaces()">View all places ↗</button>
+    </div>
+
+    <div class="filters">
+        <button class="filter active" onclick="filterPlaces('all', this)">All Places</button>
+        <button class="filter" onclick="filterPlaces('heritage', this)">🏛️ Heritage</button>
+        <button class="filter" onclick="filterPlaces('nature', this)">🌊 Nature</button>
+        <button class="filter" onclick="filterPlaces('bridge', this)">🌉 Landmarks</button>
+    </div>
+
+    <div class="places" id="places">
+
+        <!-- Ramanathaswamy Temple -->
+        <article class="place-card" data-category="heritage" data-name="Ramanathaswamy Temple">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/Ramanathaswamy_Temple.jpg"
+                alt="Ramanathaswamy Temple"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x500?text=Ramanathaswamy+Temple';"
+            >
+            <button class="favorite" onclick="toggleFavorite('temple', this)" aria-label="Add temple to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">🏛️ HERITAGE</span>
+                <h3>Ramanathaswamy Temple</h3>
+                <p>Discover sacred heritage and remarkable temple architecture.</p>
+                <button class="text-btn" onclick="showInfo('temple')">Discover more ↗</button>
+            </div>
+        </article>
+
+        <!-- Dhanushkodi -->
+        <article class="place-card" data-category="nature" data-name="Dhanushkodi">
+            <img src="https://images.unsplash.com/photo-1500375592092-40eb2168fd21?auto=format&fit=crop&w=800&q=80"
+                 alt="Ocean waves and coastline" loading="lazy">
+            <button class="favorite" onclick="toggleFavorite('dhanushkodi', this)" aria-label="Add Dhanushkodi to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">🌊 COASTAL ESCAPE</span>
+                <h3>Dhanushkodi</h3>
+                <p>Experience dramatic coastlines and historical remains.</p>
+                <button class="text-btn" onclick="showInfo('dhanushkodi')">Discover more ↗</button>
+            </div>
+        </article>
+
+        <!-- Pamban Bridge -->
+        <article class="place-card" data-category="bridge" data-name="Pamban Bridge">
+            <img src="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=800&q=80"
+                 alt="Sea and coastal scenery" loading="lazy">
+            <button class="favorite" onclick="toggleFavorite('pamban', this)" aria-label="Add Pamban Bridge to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">🌉 LANDMARK</span>
+                <h3>Pamban Bridge</h3>
+                <p>Discover the famous bridge connecting Rameswaram island with the mainland.</p>
+                <button class="text-btn" onclick="showInfo('pamban')">Discover more ↗</button>
+            </div>
+        </article>
+
+        <!-- Ariyaman Beach -->
+        <article class="place-card" data-category="nature" data-name="Ariyaman Beach">
+            <img src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=800&q=80"
+                 alt="Beautiful beach" loading="lazy">
+            <button class="favorite" onclick="toggleFavorite('ariyaman', this)" aria-label="Add Ariyaman Beach to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">🏖️ BEACH</span>
+                <h3>Ariyaman Beach</h3>
+                <p>Explore a coastal getaway near the Ramanathapuram region.</p>
+                <button class="text-btn" onclick="showInfo('ariyaman')">Discover more ↗</button>
+            </div>
+        </article>
+
+        <!-- APJ Abdul Kalam Memorial -->
+        <article class="place-card" data-category="heritage" data-name="Dr APJ Abdul Kalam Memorial">
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:FilePath/APJ_Abdul_Kalam_Memorial_Rameswaram.jpg"
+                alt="Dr APJ Abdul Kalam Memorial"
+                loading="lazy"
+                onerror="this.onerror=null; this.src='https://placehold.co/800x500?text=APJ+Abdul+Kalam+Memorial';"
+            >
+            <button class="favorite" onclick="toggleFavorite('memorial', this)" aria-label="Add memorial to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">⭐ INSPIRATION</span>
+                <h3>Dr. APJ Abdul Kalam Memorial</h3>
+                <p>Learn about the life and legacy of India's beloved former president.</p>
+                <button class="text-btn" onclick="showInfo('memorial')">Discover more ↗</button>
+            </div>
+        </article>
+
+        <!-- Ramar Patham -->
+        <article class="place-card" data-category="heritage" data-name="Ramar Patham">
+            <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&w=800&q=80"
+                 alt="Historic Indian architecture" loading="lazy">
+            <button class="favorite" onclick="toggleFavorite('ramapatham', this)" aria-label="Add Ramar Patham to favorites">♡</button>
+            <div class="card-body">
+                <span class="tag">🛕 CULTURE</span>
+                <h3>Ramar Patham</h3>
+                <p>Visit a religious landmark associated with local Ramayana traditions.</p>
+                <button class="text-btn" onclick="showInfo('ramapatham')">Discover more ↗</button>
+            </div>
+        </article>
+
+    </div>
+
+    <div id="placeInfo" class="result-panel" aria-live="polite"></div>
+</section>
+
+<section class="planner-section" id="planner">
+    <div class="planner-intro">
+        <span class="eyebrow">YOUR JOURNEY, YOUR WAY</span>
+        <h2>Build Your Perfect Trip</h2>
+        <p>Create a suggested travel plan based on your time, interests and budget.</p>
+        <div class="planner-decoration">🗺️</div>
+    </div>
+
+    <div class="planner-form">
+        <label for="days">Trip duration</label>
+        <select id="days">
+            <option value="1">1 day</option>
+            <option value="2">2 days</option>
+            <option value="3">3 days</option>
+        </select>
+
+        <label for="interest">Your interest</label>
+        <select id="interest">
+            <option value="all">Everything</option>
+            <option value="heritage">Temples & Heritage</option>
+            <option value="nature">Beaches & Nature</option>
+            <option value="family">Family trip</option>
+        </select>
+
+        <label for="budget">Approximate budget (₹ per person)</label>
+        <input type="number" id="budget" min="0" value="2000">
+
+        <button class="primary-btn" onclick="generatePlan()">✨ Generate My Itinerary</button>
+        <div id="itinerary" class="result-panel" aria-live="polite"></div>
+    </div>
+</section>
+
+<section class="section" id="favorites">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">YOUR PERSONAL COLLECTION</span>
+            <h2>❤️ Favourite Places</h2>
+            <p>Keep the places you want to visit in one list.</p>
+        </div>
+    </div>
+    <div id="favoriteList" class="result-panel">Your favourite places will appear here.</div>
+</section>
+
+<section class="section local-section" id="local">
+    <div class="section-heading">
+        <div>
+            <span class="eyebrow">EXPERIENCE THE LOCAL WAY</span>
+            <h2>More Than Sightseeing</h2>
+            <p>Useful ideas for planning a memorable visit.</p>
+        </div>
+    </div>
+
+    <div class="local-grid">
+        <article class="local-card">
+            <span>🍛</span>
+            <h3>Local Food</h3>
+            <p>Explore South Indian meals, dosa, seafood and regional specialities. Check local menus and dietary options before ordering.</p>
+        </article>
+        <article class="local-card">
+            <span>🎭</span>
+            <h3>Culture & Heritage</h3>
+            <p>Learn about local traditions, religious customs and the region's maritime history.</p>
+        </article>
+        <article class="local-card">
+            <span>🚌</span>
+            <h3>Travel Tips</h3>
+            <p>Check bus and train timings, carry drinking water and plan coastal travel according to local conditions.</p>
+        </article>
+        <article class="local-card">
+            <span>🛍️</span>
+            <h3>Local Shopping</h3>
+            <p>Explore local markets for souvenirs and regional products. Confirm prices and shop timings locally.</p>
+        </article>
+    </div>
+</section>
+
+<section class="tools-section">
+    <div class="tool-card">
+        <span class="eyebrow">TRAVEL SMARTER</span>
+        <h2>📍 Find Your Location</h2>
+        <p>Use your device's location permission to find your coordinates.</p>
+        <button class="primary-btn" onclick="getLocation()">Find My Location</button>
+        <div id="locationResult" class="result-panel" aria-live="polite"></div>
+    </div>
+
+    <div class="tool-card">
+        <span class="eyebrow">CHECK BEFORE YOU GO</span>
+        <h2>🌦️ Weather & Maps</h2>
+        <p>Open live weather information or search for directions to your destination.</p>
+        <a class="primary-btn link-button"
+           href="https://www.google.com/search?q=Ramanathapuram+Tamil+Nadu+weather"
+           target="_blank" rel="noopener">Check Weather ↗</a>
+        <a class="outline-btn link-button"
+           href="https://www.google.com/maps/search/tourist+places+in+Ramanathapuram/"
+           target="_blank" rel="noopener">Open Google Maps ↗</a>
+    </div>
+</section>
+
+<section class="chat-section" id="chat">
+    <div class="chat-box">
+        <span class="eyebrow">YOUR DIGITAL TRAVEL COMPANION</span>
+        <h2>🤖 Ask Your Tourist Guide</h2>
+        <p>Ask about places, trip plans or travel tips.</p>
+
+        <div class="quick-questions">
+            <button onclick="quickAsk('Tell me about the temple')">Temple information</button>
+            <button onclick="quickAsk('Plan a trip')">Plan a trip</button>
+            <button onclick="quickAsk('Tell me about Dhanushkodi')">Dhanushkodi</button>
+        </div>
+
+        <div id="chatResult" class="chat-result" aria-live="polite">
+            Vanakkam! Ask me about Ramanathapuram.
+        </div>
+
+        <div class="chat-input">
+            <input type="text" id="question" placeholder="Type your question..."
+                   aria-label="Ask the tourist guide"
+                   onkeydown="if(event.key==='Enter') askGuide()">
+            <button class="primary-btn" onclick="askGuide()">Send ➤</button>
+            <button class="outline-btn" onclick="voiceSearch()" title="Voice search">🎙️</button>
+        </div>
+        <p class="small-note">Demo chatbot: answers are based on built-in sample information, not a live AI model.</p>
+    </div>
+</section>
+
+<section class="quiz-section">
+    <div class="quiz-box">
+        <span class="eyebrow">TEST YOUR TRAVEL KNOWLEDGE</span>
+        <h2>🎯 Quick Travel Quiz</h2>
+        <p>Which famous temple is located in Rameswaram?</p>
+        <div class="quiz-options">
+            <button onclick="checkQuiz('a')">Meenakshi Amman Temple</button>
+            <button onclick="checkQuiz('b')">Ramanathaswamy Temple</button>
+            <button onclick="checkQuiz('c')">Brihadeeswarar Temple</button>
+        </div>
+        <p id="quizResult" aria-live="polite"></p>
+    </div>
+</section>
+
+</main>
+
+<footer>
+    <a href="#home" class="logo">🌴 Ramu<span>Guide</span></a>
+    <p>Discover places. Experience culture. Travel responsibly.</p>
+    <p class="footer-note">Student project demonstration · Verify local conditions before travelling.</p>
+    <p>© 2026 RamuGuide</p>
+</footer>
+
+<button id="topButton"
+        onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        aria-label="Back to top">↑</button>
+
+<script src="script.js"></script>
+</body>
+</html>
